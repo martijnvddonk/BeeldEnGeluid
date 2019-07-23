@@ -49,7 +49,7 @@ helm install stable/redis --set password=secretpassword --name assessmentredis -
 ```
 (Optioneel: Kies een beter wachtwoord)
 
-![startredis](images/startredis.png "startredis")
+![startredis](images/startredis2.png "startredis")
 
 
 Hiermee haal je de officiele Redis Chart uit Helm, en configureer je hem met geconfiguratie uit dit project. In deze configuratie zit een Redis cluster met:
