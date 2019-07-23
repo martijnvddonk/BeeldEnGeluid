@@ -12,8 +12,10 @@ Verder was dit project gebouwd op Windows 10 met een Minikube die in VirtualBox 
 
 VirtualBox kan je hier vinden: https://www.virtualbox.org/wiki/Downloads
 
-En Kubernetes benodigdheden kan je installeren met Chocolatey: `choco install kubernetes-cli`
+En al je Kubernetes benodigdheden kan je installeren met Chocolatey: `choco install kubernetes-cli`
 
 (Zie ook: https://chocolatey.org/packages/kubernetes-cli)
 
 ## Hoe ga ik aan de slag?
+
+#### Clone dit project naar je lokale schijf.
