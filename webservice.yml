@@ -1,0 +1,114 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuard
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kuard
+  template:
+    metadata:
+      labels:
+        app: kuard
+    spec:
+      containers:
+      - name: kuard
+        image: gcr.io/kuar-demo/kuard-amd64:1
+        livenessProbe:
+          httpGet:
+            path: /healthy
+            port: 8080
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        command:
+          - "/kuard"
+          - "$(PARAM1)"
+        env:
+          - name: PARAM1
+            valueFrom:
+              configMapKeyRef:
+                name: test-config
+                key: param1
+          - name: PARAM2
+            valueFrom:
+              configMapKeyRef:
+                name: test-config
+                key: param2
+        volumeMounts:
+          - name: config-volume
+            mountPath: /config
+          - name: secret-volume
+            mountPath: /secret
+      volumes:
+        - name: config-volume
+          configMap:
+            name: test-config
+        - name: secret-volume
+          secret:
+            secretName: secret-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-config
+data:
+  param1: hello-world-again
+  param2: the-answer-is-42
+  config.yml: |
+    # A complete config file
+    param3: more-config
+    param4: some-more
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-config
+data:
+  user: c29tZW9uZQ==
+  password: dG9wc2VjcmV0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kuard
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    nodePort: 30000
+    protocol: TCP
+  selector:
+    app: kuard
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kuard
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: kuard.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kuard
+          servicePort: 8080
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kuard
+spec:
+  maxReplicas: 10
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: kuard
+  targetCPUUtilizationPercentage: 2
