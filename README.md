@@ -8,7 +8,7 @@ De opdracht was het maken van een Kubernetes cluster waarin een Redis cluster dr
 ## Wat heb ik nodig?
 Om dit te draaien heb je in ieder geval een werkende Kubernetes cluster nodig, en een computer met daarop Docker, Kubectl en Helm.
 
-Verder was dit project gebouwd op Windows 10 met een Minikube die in VirtualBox draait, en gaan de instructies ervan uit dat je dat ook hebt. Dit project kan wel draaien in andere clusters, maar dan moet je zelf de instructies aanpassen.
+Verder was dit project gebouwd op Windows 10 met een Minikube die in VirtualBox draait, en gaan de instructies ervan uit dat je dat ook hebt. Dit project kan wel draaien in andere clusters, maar dan moet je zelf de instructies aanpassen. Verder werkte Docker **niet** op deze computer, en zijn de instructies en het project daarom niet compleet.
 
 VirtualBox kan je hier vinden: https://www.virtualbox.org/wiki/Downloads
 
