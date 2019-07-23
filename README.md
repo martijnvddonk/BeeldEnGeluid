@@ -6,7 +6,7 @@ Dit is een assessment opdracht gemaakt voor Beeld en Geluid door Martijn van de 
 De opdracht was het maken van een Kubernetes cluster waarin een Redis cluster draait, en een Webapi die met Redis praat.
 
 ## Wat heb ik nodig?
-Om dit te draaien heb je in ieder geval een werkende Kubernetes cluster nodig, en een computer met daarop Kubectl en Helm.
+Om dit te draaien heb je in ieder geval een werkende Kubernetes cluster nodig, en een computer met daarop Docker, Kubectl en Helm.
 
 Verder was dit project gebouwd op Windows 10 met een Minikube die in VirtualBox draait, en gaan de instructies ervan uit dat je dat ook hebt. Dit project kan wel draaien in andere clusters, maar dan moet je zelf de instructies aanpassen.
 
@@ -43,7 +43,7 @@ En initialiseer helm met het commando  `helm init`
 ![helminit](images/helminit.png "helminit")
 
 #### Start de Redis Cluster
-Start de redis cluster is met dit commando:
+Start de redis cluster is met het commando:
 ```
 helm install stable/redis --set password=secretpassword --name assessmentredis -f RedisConfig.yml
 ```
@@ -59,3 +59,19 @@ Hiermee haal je de officiele Redis Chart uit Helm, en configureer je hem met gec
 - Een Redis headless service
 - Een Redis master service
 - Een Redis slave service
+
+#### Stop het redis IP in de php app
+In de output van net zie je het IP adres van de Redis master service binnen je Kubernetes cluster:
+
+![ipredismaster](images/ipredismaster.png "ipredismaster")
+
+Kopieer deze en zet hem in de het bestand contactredis/contactredis.php
+
+![ipinphp](images/ipinphp.png "ipinphp")
+
+#### Bouw en push de build met Docker
+Hier heb ik helaas geen screenshots van omdat Docker bij mij nu niet tegelijk met Minikube wil draaien.
+
+
+#### Start de php app
+Start een pod met de php app die Redis aanroept met het commando: `kubectl apply -f .\my-php-app.yml --record`
