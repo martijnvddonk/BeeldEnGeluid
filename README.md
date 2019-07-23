@@ -84,3 +84,16 @@ Als je dit naar je eigen Docker account wil pushen, moet je martijnvdd vervangen
 
 #### Start de php app
 Start een pod met de php app die Redis aanroept met het commando: `kubectl apply -f .\my-php-app.yml --record`
+
+![startmyapp](images/startmyapp.png "startmyapp")
+
+#### Open de pagina
+Om de pagina te openen moet je de minikube ip toevoegen aan je hosts file. Draai `minikube ip`
+
+![minikubeip](images/minikubeip.png "minikubeip")
+
+En zet dit in je hosts file onder C:\Windows\System32\drivers\etc\hosts
+
+![hosts](images/hosts.png "hosts")
+
+(Ongetest vanwege Docker problemen) Je zou nu in je webbrowser naar http://my-php-app.local/contactredis.php moeten kunnen gaan om de het resultaat te kunnen zien.
