@@ -82,6 +82,5 @@ Als je dit naar je eigen Docker account wil pushen, moet je martijnvdd vervangen
 
 ![dockeraccount](images/dockeraccount.png "dockeraccount")
 
-
 #### Start de php app
 Start een pod met de php app die Redis aanroept met het commando: `kubectl apply -f .\my-php-app.yml --record`
