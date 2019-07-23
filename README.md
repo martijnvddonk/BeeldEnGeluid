@@ -41,3 +41,21 @@ Start minikube met het commando `minikube start`.
 En initialiseer helm met het commando  `helm init`
 
 ![helminit](images/helminit.png "helminit")
+
+#### Start de Redis Cluster
+Start de redis cluster is met dit commando:
+```
+helm install stable/redis --set password=secretpassword --name assessmentredis -f RedisConfig.yml
+```
+(Optioneel: Kies een beter wachtwoord)
+
+![startredis](images/startredis.png "startredis")
+
+
+Hiermee haal je de officiele Redis Chart uit Helm, en configureer je hem met geconfiguratie uit dit project. In deze configuratie zit een Redis cluster met:
+
+- 1 Redis master pod
+- 2 Redis slave pods
+- Een Redis headless service
+- Een Redis master service
+- Een Redis slave service
