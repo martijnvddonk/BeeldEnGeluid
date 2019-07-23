@@ -19,3 +19,4 @@ En al je Kubernetes benodigdheden kan je installeren met Chocolatey: `choco inst
 ## Hoe ga ik aan de slag?
 
 #### Clone dit project naar je lokale schijf.
+[clone](images/clone.png "Clone")
