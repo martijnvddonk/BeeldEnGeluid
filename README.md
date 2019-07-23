@@ -18,5 +18,16 @@ En al je Kubernetes benodigdheden kan je installeren met Chocolatey: `choco inst
 
 ## Hoe ga ik aan de slag?
 
-#### Clone dit project naar je lokale schijf.
+#### Clone dit project naar je lokale schijf
+Je kunt hiervoor je favoriete git tool gebruiken, dit voorbeeld gebruikt TortoiseGit
 ![clone](images/clone.png "Clone")
+
+#### Open Powershell en ga naar deze map
+Open Powershell
+![openpw](images/openpowershell.png "openpw")
+En ga naar de map waar je deze repository naartoe gecloned hebt
+![ganaarmap](images/ganaarmap.png "ganaarmap")
+
+#### Start Minikube
+Start minikube met het commando `minikube start`
+![minikubestart](images/minikubestart.png "minikubestart")
