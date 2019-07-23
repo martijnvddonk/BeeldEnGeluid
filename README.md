@@ -72,6 +72,16 @@ Kopieer deze en zet hem in de het bestand contactredis/contactredis.php
 #### Bouw en push de build met Docker
 Hier heb ik helaas geen screenshots van omdat Docker bij mij nu niet tegelijk met Minikube wil draaien.
 
+```
+cd contactredis
+docker build -t martijnvdd/my-php-app .
+docker login
+docker push martijnvdd/my-php-app
+```
+Als je dit naar je eigen Docker account wil pushen, moet je martijnvdd vervangen in deze commando's en in my-php-app.yml
+
+![dockeraccount](images/dockeraccount.png "dockeraccount")
+
 
 #### Start de php app
 Start een pod met de php app die Redis aanroept met het commando: `kubectl apply -f .\my-php-app.yml --record`
